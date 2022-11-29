@@ -16,4 +16,4 @@ jobs:
           - 27017:27017
     steps:
       - name: Get user
-        run: curl http:localhost:3001/api/users
+        run: curl http:localhost:3001/api/user
