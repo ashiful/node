@@ -1,0 +1,20 @@
+name: Test shell commands
+
+on: [push]
+
+jobs:
+  run-on-docker:
+    runs-on: ubuntu-latest
+    services:
+      app:
+        image: alialaa17/node-api
+        ports:
+          - 3001:3000
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+    steps:
+      - name: Post a user
+        run: |
+          node -v
