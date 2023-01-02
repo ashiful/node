@@ -12,4 +12,7 @@ jobs:
           token: ${{ secrets.TOK }}
       - name: where
         run: ls -la
-
+      - name: Run script on docker
+        uses: docker://node:10.13-alpine
+        with:
+          entrypoint: .github/workflows/myscript.sh
