@@ -6,10 +6,10 @@ jobs:
   run-on-docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Get user
-        run: |
-          echo "test"
-      - uses: action/checkout@v1
+      - name: Checkout code
+        uses: action/checkout@v1
+        with:
+          token: ${{ secrets.TOK }}
       - name: Run script on docker
         uses: docker://node:10.13-alpine
         with:
