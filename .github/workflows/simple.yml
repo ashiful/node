@@ -9,6 +9,7 @@ jobs:
       - name: Get user
         run: |
           echo "test"
+      - uses: action/checkout@v1
       - name: Run script on docker
         uses: docker://node:10.13-alpine
         with:
