@@ -11,8 +11,5 @@ jobs:
         with:
           token: ${{ secrets.TOK }}
       - name: where
-        run: pwd
-      - name: Run script on docker
-        uses: docker://node:10.13-alpine
-        with:
-          entrypoint: .github/workflows/myscript.sh
+        run: ls -la
+
