@@ -17,3 +17,7 @@ jobs:
     steps:
       - name: Get user
         run: curl http://localhost:3001/api/users
+      - name: With own docker
+        uses: docker://node:10.13-alpine
+        with:
+          entrypoint: /usr/local/bin/node
