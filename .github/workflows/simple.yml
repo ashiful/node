@@ -6,7 +6,9 @@ jobs:
   run-on-docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v1
+      - name: Get user
+        run: |
+          echo "test"
       - name: Run script on docker
         uses: docker://node:10.13-alpine
         with:
