@@ -24,10 +24,10 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             if [[ "$file" == *"$config.yml" ]]; then
-              echo "$file ."
+              echo "This is file: $file"
               DIR="${file: :-10}"
               export $(grep -v '^#' ${DIR}.env | xargs)
-              echo $DIR
+              echo "inside dir: $DIR"
               echo $PROMETHEUS_HOSTNAME
               # docker build . --build-arg dir=$DIR -t config-copy:${PROMETHEUS_HOSTNAME}
             fi
