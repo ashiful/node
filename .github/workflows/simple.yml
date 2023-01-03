@@ -29,7 +29,8 @@ jobs:
               export $(grep -v '^#' ${DIR}.env | xargs)
               echo "inside dir: $DIR"
               echo $PROMETHEUS_HOSTNAME
-              docker build . --build-arg dir=$DIR -t config-copy:${PROMETHEUS_HOSTNAME}
+              docker build . --build-arg dir=$DIR -t ashiful/kaktarua:${PROMETHEUS_HOSTNAME}
+              docker push ashiful/kaktarua:${PROMETHEUS_HOSTNAME}
             fi
           done
           docker images
