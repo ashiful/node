@@ -1,7 +1,10 @@
-FROM node:10.13-alpine
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD node app.js
+FROM centos
+ARG dir
+#COPY ./remote_config /kyos/remote_config 
+COPY $dir /kyos/remote_config 
+COPY ./script.sh /
+
+RUN chmod u+x ./script.sh
+
+CMD "/script.sh"
+
