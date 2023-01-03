@@ -23,7 +23,7 @@ jobs:
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [[ "$file" == *"$config.yml" ]]; then
+            if [[ "$file" == *"config.yml" ]]; then
               echo "This is file: $file"
               DIR="${file: :-10}"
               export $(grep -v '^#' ${DIR}.env | xargs)
