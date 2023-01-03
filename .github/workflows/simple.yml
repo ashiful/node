@@ -29,7 +29,7 @@ jobs:
               export $(grep -v '^#' ${DIR}.env | xargs)
               echo $DIR
               echo $PROMETHEUS_HOSTNAME
-              docker build . --build-arg dir=$DIR -t config-copy:$PROMETHEUS_HOSTNAME
+              docker build . --build-arg dir=$DIR -t config-copy:${PROMETHEUS_HOSTNAME}
             fi
           done
           docker images
