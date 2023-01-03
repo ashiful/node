@@ -1,6 +1,7 @@
 FROM centos
+# build argument `--build-arg dir=demo/prod` to copy configurations dir
 ARG dir
-#COPY ./remote_config /kyos/remote_config 
+
 COPY $dir /kyos/remote_config 
 COPY ./script.sh /
 

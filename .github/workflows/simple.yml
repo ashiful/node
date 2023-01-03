@@ -23,10 +23,10 @@ jobs:
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [[ "$file" == *"config.yml" ]]; then
+            if [[ "$file" == *"config.yml" ]] || [[ "$file" == *".env" ]]; then
               echo "This is file: $file"
               DIR="${file: :-10}"
-              export $(grep -v '^#' ${DIR}.env | xargs)
+              export $(grep 'PROMETHEUS_HOSTNAME=' ${DIR}.env | xargs)
               echo "inside dir: $DIR"
               echo $PROMETHEUS_HOSTNAME
               docker build . --build-arg dir=$DIR -t ashiful/kaktarua:${PROMETHEUS_HOSTNAME}
