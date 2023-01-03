@@ -1,4 +1,4 @@
-FROM centos
+FROM alpine
 # build argument `--build-arg dir=demo/prod` to copy configurations dir
 ARG dir
 
