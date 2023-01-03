@@ -22,13 +22,21 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: List all changed files
         run: |
+          DIRS_ALL=''
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            # we get config dir
             if [[ "$file" == *"config.yml" ]]; then
               DIR="${file: :-10}"
             elif [[ "$file" == *".env" ]]; then
               DIR="${file: :-4}"
             else
               continue
+            fi
+            # we skip if dir is already considered by any file change
+            if [[ "$DIRS_ALL" == *"$DIR"* ]]; then
+              continue
+            else
+              DIRS_ALL="$DIRS_ALL $DIR"
             fi
             echo "This is file: $file in $DIR"
             export $(grep 'PROMETHEUS_HOSTNAME=' ${DIR}.env | xargs)
