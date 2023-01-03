@@ -19,5 +19,9 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             if [[ "$file" == *"$config.yml" ]]; then
               echo "$file ."
+              DIR="${file: :-10}"
+              export $(grep -v '^#' ${DIR}.env | xargs)
+              echo $DIR
+              echo $PROMETHEUS_HOSTNAME
             fi
           done
