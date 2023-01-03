@@ -25,14 +25,13 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             if [[ "$file" == *"config.yml" ]]; then
               DIR="${file: :-10}"
-              docker build . --build-arg dir=$DIR -t ashiful/kaktarua:${PROMETHEUS_HOSTNAME}
-              docker push ashiful/kaktarua:${PROMETHEUS_HOSTNAME}
             elif [[ "$file" == *".env" ]]; then
               DIR="${file: :-4}"
             else
               continue
             fi
             echo "This is file: $file in $DIR"
+            export $(grep 'PROMETHEUS_HOSTNAME=' ${DIR}.env | xargs)
             docker build . --build-arg dir=$DIR -t ashiful/kaktarua:${PROMETHEUS_HOSTNAME}
             docker push ashiful/kaktarua:${PROMETHEUS_HOSTNAME}
           done
